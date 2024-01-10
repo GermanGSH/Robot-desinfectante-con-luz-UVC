@@ -66,9 +66,9 @@ def manual_run():
 def sensor():
     global stop_run
     while not stop_run:
-      x= 0  
-      y= 0
-      z= GPIO.input(PIRA)
+      x= GPIO.input(PIRA)
+      y= GPIO.input(PIRA2)
+      z= GPIO.input(PIRA3)
       if 1 in (x, y, z):
           GPIO.output(RELE, 0)
       else:

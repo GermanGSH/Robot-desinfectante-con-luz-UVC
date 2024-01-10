@@ -13,3 +13,5 @@
 *.- Para levantar la red wifi se tomó en cuenta este link https://www.raspberrypi.com/documentation/computers/configuration.html#setting-up-a-routed-wireless-access-point
 
 *.- Para ejecutar el programa al encendido de la tarjeta se usó el método de System ya que los demás no funcionaron para levantar el servidor.
+
+*.- Para poder usar el robot y cualquier duda con respecto a su funcionamiento se puede leer los documentos "Manual de usuario Robot desinfectante con luz UVC.pdf" y "Robot Desinfectante con Luz UVC.pdf"

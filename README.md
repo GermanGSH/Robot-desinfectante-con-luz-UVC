@@ -1,6 +1,6 @@
 # Robot-desinfectante-con-luz-UVC
 
-*.- La carpeta Servidor contiene todos los archivos para la control del robot 
+*.- La carpeta Servidor contiene todos los archivos para el control del robot 
 
 *.- El archivo test.py es el principal, el que levanta el servidor
 

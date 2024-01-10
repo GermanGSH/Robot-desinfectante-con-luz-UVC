@@ -1,0 +1,233 @@
+<html>
+<head>
+<script src="{{ url_for('static', filename='js/jquery-3.6.4.js') }}" type="text/javascript"></script>
+   <style>
+body {background-color: brown}
+h1 {color:white}
+
+button {
+	color: blue;
+	background:lightgrey;
+	border: 1px solid #000;
+	border-radius: 8px;
+	position: center;
+}
+
+    </style>
+
+<style>
+	.cuadrado {
+		position: relative;
+		left: 780px;
+		display: inline-block;
+
+
+	}
+	.imagen {
+		position:absolute;
+		left: 70px;
+		top: 160px;
+		display: inline-block;
+
+	}
+
+	.metro {
+		
+		padding: 5px;
+		background: white;
+		width: 100px;
+		text-align: center;
+		border-radius: 5px;
+	}
+	.ppm {
+		background: lightskyblue;
+		padding: 5px;
+		width: 120px;
+		text-align: center;
+		border-radius: 5px;
+	}
+	.metrol {
+		background: white;
+		padding: 20px;
+		width: 30px;
+		text-align: center;
+		border-radius: 5px;
+	}
+
+</style>
+</head>
+
+<body>
+
+<div id="test" class="metro" style="position: absolute; left: 350px; top: 130px;"></div>
+<div id="testb" class="metro" style="position: absolute; left: 350px; top: 550px;"></div>
+<div id="testr" class="metrol" style="position: absolute; left: 710px; top: 340px"></div>
+<div id="testl" class="metrol" style="position: absolute; left: 5px; top: 340px"></div>
+<div id="co2" class="ppm" style="position: absolute; left: 690px; top: 120px"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+
+const getSensorReading = function() {
+  fetch(`http://${location.host}/update`) 
+	.then((resp) => resp.json())
+	.then(function(response) {
+	  document.getElementById('test').innerHTML =response.data;
+	  document.getElementById('testb').innerHTML =response.datab;
+	  document.getElementById('testr').innerHTML =response.datar;
+	  document.getElementById('testl').innerHTML =response.datal;
+  });
+}
+
+getSensorReading();
+setInterval(getSensorReading, 1000); 
+});
+
+document.addEventListener("DOMContentLoaded", function(event) {
+
+const getSensorReading = function() {
+  fetch(`http://${location.host}/updateco`) 
+	.then((resp) => resp.json())
+	.then(function(response) {
+	  document.getElementById('co2').innerHTML =response.dataco;
+  });
+}
+
+getSensorReading();
+setInterval(getSensorReading, 5000); 
+});
+
+document.addEventListener("DOMContentLoaded", function(event) {
+
+const getSensorReading = function() {
+  fetch(`http://${location.host}/lighton`) 
+	.then((resp) => resp.json())
+	.then(function(response) {
+	  document.getElementById('contador').innerHTML =response.datacon;
+  });
+}
+
+getSensorReading();
+setInterval(getSensorReading, 1000); 
+});
+
+</script>
+
+<div style="text-align:right">
+<h1> Robot Desinfectante con Luz UVC   <img style="height: 70px"src="../static/IPN.png"> </h1>
+<button style="height: 50px; width: 100px" onclick="lighton()"><img style="height: 40px"src="../static/lighton.png"></button>
+<img hspace="20" style="padding-left: 200px">
+<button style="height: 50px; width: 100px" onclick="lightoff()"><img style="height: 35px"src="../static/lightoff.png"></button>
+</div>
+<span style="display:inline-block; padding:10px;border:1px solid #fc0; font-size: 140%;font-weight: bold;" class="cuadrado">
+		<img hspace="7" style="padding-left: 5px">
+		<button style="height: 75px; width: 75px" onclick="Cleft()"><img style="height: 65px"src="../static/eiz.jpg"></button>
+		<img hspace="10" style="padding-left: 10px">
+		<button style="height: 75px; width: 75px" onclick="forward()"><img style="height: 65px"src="../static/forward.png"></button>
+		<img hspace="10" style="padding-left: 10px">
+		<button style="height: 75px; width: 75px" onclick="Cright()"><img style="height: 65px"src="../static/ede.jpg"></button>
+		<img hspace="7" style="padding-left: 5px">
+		<br><br>
+		<img hspace="7" style="padding-left: 5px">
+		<button style="height: 75px; width: 75px" onclick="left()"><img style="height: 65px"src="../static/left.png"></button>
+		<img hspace="10" style="padding-left: 10px">
+		<button style="height: 75px; width: 75px" onclick="stop()"><img style="height: 63px"src="../static/stop.png"></button>
+		<img hspace="10" style="padding-left: 10px">
+		<button style="height: 75px; width: 75px" onclick="right()"><img style="height: 65px"src="../static/right.png"></button>
+		<img hspace="7" style="padding-left: 5px">
+		<br><br>
+		<img hspace="7" style="padding-left: 5px">
+		<button style="height: 75px; width: 75px" onclick="Tleft()"><img style="height: 65px"src="../static/returnI.png"></button>
+		<img hspace="10" style="padding-left: 10px">
+		<button style="height: 75px; width: 75px" onclick="back()"><img style="height: 65px"src="../static/reverse.png"></button>
+		<img hspace="10" style="padding-left: 10px">
+		<button style="height: 75px; width: 75px" onclick="Tright()"><img style="height: 65px"src="../static/returnR.png"></button>
+		<img hspace="7" style="padding-left: 5px">
+		<br><br>
+		<img hspace="10" style="padding-left: 5px">
+		<button style="height: 50px; width: 50px; font-size: 18px" onclick="motorson()">ON</button>
+		<img hspace="80" style="padding-left: 20px">
+		<button style="height: 50px; width: 50px; font-size: 18px" onclick="motorsoff()">OFF</button>
+		<img hspace="10" style="padding-left: 5px">
+</span>
+<iframe src="{{ url_for('video') }}" width="70%" frameborder="0" width="750" height="390"  scrolling="no" class="imagen"></iframe>
+<br>
+
+<script>
+var xmlhttp;
+xmlhttp=new XMLHttpRequest();
+
+function lighton()
+{
+    xmlhttp.open("GET","/lighton");
+    xmlhttp.send();
+}
+function lightoff()
+{
+    xmlhttp.open("GET","/lightoff");
+    xmlhttp.send();
+}
+function forward()
+{
+	xmlhttp.open("GET","/forward");
+	xmlhttp.send();
+}
+function stop()
+{
+	xmlhttp.open("GET","/stop");
+	xmlhttp.send();
+}
+function left()
+{
+	xmlhttp.open("GET","/left");
+	xmlhttp.send();
+}
+function right()
+{
+	xmlhttp.open("GET","/right");
+	xmlhttp.send();
+}
+function back()
+{
+	xmlhttp.open("GET","/back");
+	xmlhttp.send();
+}
+
+function Tleft()
+{
+	xmlhttp.open("GET","/Tleft");
+	xmlhttp.send();
+}
+function Tright()
+{
+	xmlhttp.open("GET","/Tright");
+	xmlhttp.send();
+}
+function Cleft()
+{
+	xmlhttp.open("GET","/Cleft");
+	xmlhttp.send();
+}
+function Cright()
+{
+	xmlhttp.open("GET","/Cright");
+	xmlhttp.send();
+}
+
+
+function motorson()
+{
+    xmlhttp.open("GET","/motorson");
+    xmlhttp.send();
+}
+function motorsoff()
+{
+    xmlhttp.open("GET","/motorsoff");
+    xmlhttp.send();
+}
+        
+</script>
+
+</body>
+</html>
+
